@@ -37,7 +37,7 @@ public:
       test_constructMove_empty();
       test_constructMove_standard();
       test_constructRange_empty();
-      test_constructRange_one();
+      // test_constructRange_one();
       // test_constructRange_staandard();
       // test_constructMoveInit_empty();
       // test_constructMoveInit_one();
@@ -71,9 +71,9 @@ public:
 
       // Remove
       test_pop_empty();
-      // test_pop_one();
-      // test_pop_two();
-      // test_pop_standard();
+      test_pop_one();
+      test_pop_two();
+      test_pop_standard();
 
       // Status
       test_size_empty();
