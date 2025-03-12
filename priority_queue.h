@@ -79,8 +79,7 @@ public:
    // Status
    //
    size_t size()  const { return container.size(); }
-
-   bool empty() const { return size() == size_t(0);}
+   bool empty()   const { return size() == size_t(0);}
 
 private:
 
@@ -158,7 +157,7 @@ bool priority_queue <T, Container, Compare> :: percolateDown(size_t indexHeap)
    else
       indexBigger = indexLeft;
 
-   if ( indexBigger <= size() && compare(container[indexHeap - 1], container[indexBigger - 1]))
+   if (indexBigger <= size() && compare(container[indexHeap - 1], container[indexBigger - 1]))
    {
       swap(container[indexHeap - 1], container[indexBigger - 1]);
       percolateDown(indexBigger);
