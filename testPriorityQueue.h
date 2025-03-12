@@ -37,15 +37,15 @@ public:
       test_constructMove_empty();
       test_constructMove_standard();
       test_constructRange_empty();
-      // test_constructRange_one();
-      // test_constructRange_staandard();
-      // test_constructMoveInit_empty();
-      // test_constructMoveInit_one();
-      // test_constructMoveInit_standard();
-      // test_constructMoveInit_twoLevels();
-      // test_destructor_empty();
-      // test_destructor_standard();
-      // test_destructor_partiallyFilled();
+      test_constructRange_one();
+       test_constructRange_staandard();
+       test_constructMoveInit_empty();
+       test_constructMoveInit_one();
+       test_constructMoveInit_standard();
+       test_constructMoveInit_twoLevels();
+       test_destructor_empty();
+       test_destructor_standard();
+       test_destructor_partiallyFilled();
 
       // Assign
       test_swap_emptyEmpty();
@@ -58,16 +58,16 @@ public:
       test_top_standard();
 
       // Insert
-      // test_push_empty();
-      // test_push_levelZero();
-      // test_push_levelOne();
-      // test_push_levelTwo();
-      // test_push_levelThree();
-      // test_pushMove_empty();
-      // test_pushMove_levelZero();
-      // test_pushMove_levelOne();
-      // test_pushMove_levelTwo();
-      // test_pushMove_levelThree();
+       test_push_empty();
+       test_push_levelZero();
+       test_push_levelOne();
+       test_push_levelTwo();
+       test_push_levelThree();
+       test_pushMove_empty();
+       test_pushMove_levelZero();
+       test_pushMove_levelOne();
+       test_pushMove_levelTwo();
+       test_pushMove_levelThree();
 
       // Remove
       test_pop_empty();
