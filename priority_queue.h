@@ -79,7 +79,6 @@ public:
    // Status
    //
    size_t size()  const { return container.size(); }
-
    bool empty() const { return size() == size_t(0);}
 
 private:
@@ -89,7 +88,6 @@ private:
 
    Container container;       // underlying container (probably a vector)
    Compare   compare;         // comparision operator
-
 };
 
 /************************************************
@@ -103,7 +101,6 @@ const T & priority_queue <T, Container, Compare> :: top() const
       return container.front();
    else
       throw std::out_of_range("std:out_of_range");
-
 }
 
 /**********************************************
