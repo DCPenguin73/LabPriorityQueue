@@ -70,10 +70,10 @@ public:
        test_pushMove_levelThree();
 
       // Remove
-      /*test_pop_empty();
-       test_pop_one();
-       test_pop_two();
-       test_pop_standard();*/
+      test_pop_empty();
+      test_pop_one();
+      test_pop_two();
+      test_pop_standard();
 
       // Status
       test_size_empty();

@@ -116,12 +116,11 @@ const T & priority_queue <T, Container, Compare> :: top() const
 template <class T, class Container, class Compare>
 void priority_queue <T, Container, Compare> :: pop()
 {
-   // stubbed out the best I could does not compile
-   /* T* temp = container[0];
-   container[0] = container[size() - 1];
-   container[size() - 1] = temp;
+   using std::swap;
+   if (!empty())
+      swap(container[0], container[size() - 1]);
    container.pop_back();
-   percolateDown(); */
+   percolateDown(1);
 }
 
 /*****************************************
@@ -154,31 +153,28 @@ void priority_queue <T, Container, Compare> :: push(T && t)
 template <class T, class Container, class Compare>
 bool priority_queue <T, Container, Compare> :: percolateDown(size_t indexHeap)
 {
-   // Find the left child and the right child of index indexLeft <- index x 2
-   size_t indexLeft = indexHeap * 2;
-   size_t indexRight = indexLeft + 1;
-   size_t indexBigger = indexHeap;
+    size_t indexLeft = 2 * indexHeap;
+    size_t indexRight = 2 * indexHeap + 1;
+    size_t indexBiggest = indexHeap;
+    using std::swap;
 
-   using std::swap;
-   // Check to see if indexRight and indexLeft exist
-   if (indexRight <= container.size() && indexLeft <= container.size())
-   {
+    if (indexLeft <= container.size() && compare(container[indexBiggest - 1], container[indexLeft - 1]))
+    {
+        indexBiggest = indexLeft;
+    }
 
-      // Find which child is bigger, the left child or the right child?
-      if (indexRight <= container.size() && compare(container[indexLeft - 1], container[indexRight - 1]))
-         indexBigger = indexRight;
-      else
-         indexBigger = indexLeft;
+    if (indexRight <= container.size() && compare(container[indexBiggest - 1], container[indexRight - 1]))
+    {
+        indexBiggest = indexRight;
+    }
 
-      // If the bigger child is greater than the parent, then swap it
-      if (compare(container[indexHeap - 1], container[indexBigger - 1]))
-      {
-         swap(container[indexHeap - 1], container[indexBigger - 1]);
-         percolateDown(indexBigger);
-         return true;
-      }
-   }
-   return false;
+    if (indexBiggest != indexHeap)
+    {
+        swap(container[indexHeap - 1], container[indexBiggest - 1]);
+        percolateDown(indexBiggest);
+        return true;
+    }
+    return false;
 }
 
 /************************************************
