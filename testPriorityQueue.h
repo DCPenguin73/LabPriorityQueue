@@ -89,8 +89,8 @@ public:
       test_percolateDown_oneLevelReversed();
       test_percolateDown_twoLevelsReversed();
       test_heapify_nothing();
-      // test_heapify_oneLevel();
-      // test_heapify_twoLevels();
+      test_heapify_oneLevel();
+      test_heapify_twoLevels();
 
       report("PQueue");
    }
