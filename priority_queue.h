@@ -100,7 +100,11 @@ private:
 template <class T, class Container, class Compare>
 const T & priority_queue <T, Container, Compare> :: top() const
 {
-   return *(new T);
+   if (!container.empty()) // test to see if exeption needs thrown
+      return container.front();
+   else
+      throw std::out_of_range("std:out_of_range"); 
+
 }
 
 /**********************************************
@@ -110,6 +114,12 @@ const T & priority_queue <T, Container, Compare> :: top() const
 template <class T, class Container, class Compare>
 void priority_queue <T, Container, Compare> :: pop()
 {
+   // stubbed out the best I could does not compile
+   /* T* temp = container[0];
+   container[0] = container[size() - 1];
+   container[size() - 1] = temp;
+   container.pop_back();
+   percolateDown(); */
 }
 
 /*****************************************
@@ -119,10 +129,20 @@ void priority_queue <T, Container, Compare> :: pop()
 template <class T, class Container, class Compare>
 void priority_queue <T, Container, Compare> :: push(const T & t)
 {
+   // stubbed out the best I could does not compile
+   //container.push_back(t);
+   size_t i = size() / 2;
+   while (i && percolateDown(i))
+      i /= 2;
 }
 template <class T, class Container, class Compare>
 void priority_queue <T, Container, Compare> :: push(T && t)
 {
+   // stubbed out the best I could does not compile
+   //container->push_back(t);
+   size_t i = size() / 2;
+   while (i && percolateDown(i))
+      i /= 2;
 }
 
 /************************************************

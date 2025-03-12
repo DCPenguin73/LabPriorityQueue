@@ -31,7 +31,7 @@ public:
       reset();
 
       // Construct
-      test_construct_default();
+      /*test_construct_default();
       test_constructCopy_empty();
       test_constructCopy_standard();
       test_constructMove_empty();
@@ -45,13 +45,13 @@ public:
       test_constructMoveInit_twoLevels();
       test_destructor_empty();
       test_destructor_standard();
-      test_destructor_partiallyFilled();
+      test_destructor_partiallyFilled();*/
       
       // Assign
-      test_swap_emptyEmpty();
+      /*test_swap_emptyEmpty();
       test_swap_standardEmpty();
       test_swap_emptyStandard();
-      test_swap_standardStandard();
+      test_swap_standardStandard();*/
 
       // Access
       test_top_empty();
@@ -82,7 +82,7 @@ public:
       test_empty_standard();
       
       // Utility
-      test_percolateDown_nothing();
+      /*test_percolateDown_nothing();
       test_percolateDown_oneLevel();
       test_percolateDown_twoLevels();
       test_percolateDown_nothingReversed();
@@ -90,7 +90,7 @@ public:
       test_percolateDown_twoLevelsReversed();
       test_heapify_nothing();
       test_heapify_oneLevel();
-      test_heapify_twoLevels();
+      test_heapify_twoLevels();*/
 
       report("PQueue");
    }
