@@ -52,6 +52,7 @@ public:
       container.reserve(last - first);
       for (auto it = first; it != last; ++it)
          push(*it);
+      //heapify();
    }
    explicit priority_queue(const Compare& c, Container&& rhs) : compare(c), container(std::move(rhs)) {
       heapify();
@@ -130,19 +131,17 @@ void priority_queue <T, Container, Compare> :: pop()
 template <class T, class Container, class Compare>
 void priority_queue <T, Container, Compare> :: push(const T & t)
 {
-   // stubbed out the best I could does not compile
-   //container.push_back(t);
-   size_t i = size() / 2;
-   while (i && percolateDown(i))
+   container.push_back(t);
+   size_t i = (container.size()+1) / 2;
+   while (i > 0 && percolateDown(i))
       i /= 2;
 }
 template <class T, class Container, class Compare>
 void priority_queue <T, Container, Compare> :: push(T && t)
 {
-   // stubbed out the best I could does not compile
-   //container->push_back(t);
-   size_t i = size() / 2;
-   while (i && percolateDown(i))
+   container.push_back(std::move(t));
+   size_t i = (container.size()+1) / 2;
+   while (i > 0 && percolateDown(i))
       i /= 2;
 }
 
