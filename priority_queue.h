@@ -70,19 +70,20 @@ public:
    // Insert
    //
    void  push(const T& t);
-   void  push(T&& t);     
+   void  push(T&& t);
 
    //
    // Remove
    //
-   void  pop(); 
+   void  pop();
 
    //
    // Status
    //
    size_t size()  const { return container.size(); }
-   bool empty() const { return container.empty();}
-   
+
+   bool empty() const { return size() == size_t(0);}
+
 private:
 
    void heapify();                            // convert the container in to a heap
@@ -103,7 +104,7 @@ const T & priority_queue <T, Container, Compare> :: top() const
    if (!container.empty()) // test to see if exeption needs thrown
       return container.front();
    else
-      throw std::out_of_range("std:out_of_range"); 
+      throw std::out_of_range("std:out_of_range");
 
 }
 
@@ -154,18 +155,31 @@ void priority_queue <T, Container, Compare> :: push(T && t)
 template <class T, class Container, class Compare>
 bool priority_queue <T, Container, Compare> :: percolateDown(size_t indexHeap)
 {
+
+   // Find the left child and the right child of index indexLeft <- index x 2
    size_t indexLeft = indexHeap * 2;
    size_t indexRight = indexLeft + 1;
-   size_t indexBigger;
+   size_t indexBigger = indexHeap;
 
-   if (indexRight < container.size() && compare(container[indexLeft], container[indexRight]))
-      indexBigger = indexRight;
-   else
-      indexBigger = indexLeft;
-   if (indexBigger < container.size() && compare(container[indexHeap], container[indexBigger])) {
-      std::swap(container[indexHeap], container[indexBigger]);
-      percolateDown(indexBigger);
-      return true;
+   using std::swap;
+   // Check to see if indexRight and indexLeft exist
+   if (indexRight <= container.size() && indexLeft <= container.size())
+   {
+
+      // Find which child is bigger, the left child or the right child?
+      if (indexRight <= container.size() && container[indexLeft - 1] < container[indexRight - 1])
+         indexBigger = indexRight;
+      else
+         indexBigger = indexLeft;
+
+      // If the bigger child is greater than the parent, then swap it
+      if (container[indexHeap - 1] < container[indexBigger - 1])
+      {
+         swap(container[indexHeap - 1], container[indexBigger - 1]);
+         percolateDown(indexBigger);
+         return true;
+      }
+
    }
    return false;
 }
@@ -194,4 +208,4 @@ inline void swap(custom::priority_queue <T, Container, Compare> & lhs,
    swap(lhs.compare, rhs.compare);
 }
 
-}; 
+};

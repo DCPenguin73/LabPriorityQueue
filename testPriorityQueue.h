@@ -31,66 +31,66 @@ public:
       reset();
 
       // Construct
-      /*test_construct_default();
+      test_construct_default();
       test_constructCopy_empty();
       test_constructCopy_standard();
       test_constructMove_empty();
       test_constructMove_standard();
       test_constructRange_empty();
       test_constructRange_one();
-      test_constructRange_staandard();
-      test_constructMoveInit_empty();
-      test_constructMoveInit_one();
-      test_constructMoveInit_standard();
-      test_constructMoveInit_twoLevels();
-      test_destructor_empty();
-      test_destructor_standard();
-      test_destructor_partiallyFilled();*/
-      
+      // test_constructRange_staandard();
+      // test_constructMoveInit_empty();
+      // test_constructMoveInit_one();
+      // test_constructMoveInit_standard();
+      // test_constructMoveInit_twoLevels();
+      // test_destructor_empty();
+      // test_destructor_standard();
+      // test_destructor_partiallyFilled();
+
       // Assign
-      /*test_swap_emptyEmpty();
+      test_swap_emptyEmpty();
       test_swap_standardEmpty();
       test_swap_emptyStandard();
-      test_swap_standardStandard();*/
+      test_swap_standardStandard();
 
       // Access
       test_top_empty();
       test_top_standard();
 
       // Insert
-      test_push_empty();
-      test_push_levelZero();
-      test_push_levelOne();
-      test_push_levelTwo();
-      test_push_levelThree();
-      test_pushMove_empty();
-      test_pushMove_levelZero();
-      test_pushMove_levelOne();
-      test_pushMove_levelTwo();
-      test_pushMove_levelThree();
+      // test_push_empty();
+      // test_push_levelZero();
+      // test_push_levelOne();
+      // test_push_levelTwo();
+      // test_push_levelThree();
+      // test_pushMove_empty();
+      // test_pushMove_levelZero();
+      // test_pushMove_levelOne();
+      // test_pushMove_levelTwo();
+      // test_pushMove_levelThree();
 
       // Remove
       test_pop_empty();
-      test_pop_one();
-      test_pop_two();
-      test_pop_standard();
+      // test_pop_one();
+      // test_pop_two();
+      // test_pop_standard();
 
       // Status
       test_size_empty();
       test_size_standard();
       test_empty_empty();
       test_empty_standard();
-      
+
       // Utility
-      /*test_percolateDown_nothing();
+      test_percolateDown_nothing();
       test_percolateDown_oneLevel();
       test_percolateDown_twoLevels();
       test_percolateDown_nothingReversed();
       test_percolateDown_oneLevelReversed();
       test_percolateDown_twoLevelsReversed();
       test_heapify_nothing();
-      test_heapify_oneLevel();
-      test_heapify_twoLevels();*/
+      // test_heapify_oneLevel();
+      // test_heapify_twoLevels();
 
       report("PQueue");
    }
@@ -122,7 +122,7 @@ public:
    /***************************************
     * DESTRUCTOR
     ***************************************/
-   
+
    // destructor of an empty priority queue
    void test_destructor_empty()
    {  // setup
@@ -139,7 +139,7 @@ public:
       assertUnit(Spy::numCopyMove() == 0);
       assertUnit(Spy::numDestructor() == 0);
    }  // verify
-   
+
    // destructor of a 7-element collection
    void test_destructor_standard()
    {  // setup
@@ -161,7 +161,7 @@ public:
       assertUnit(Spy::numCopy() == 0);
       assertUnit(Spy::numAssign() == 0);
    }
-   
+
    // destructor of a 3-element, 6-capacity priority queue
    void test_destructor_partiallyFilled()
    {  // setup
@@ -184,11 +184,11 @@ public:
       assertUnit(Spy::numCopy() == 0);
       assertUnit(Spy::numAssign() == 0);
    }
-   
+
    /***************************************
     * COPY CONSTRUCTOR
     ***************************************/
-   
+
    // copy constructor of an empty vector
    void test_constructCopy_empty()
    {  // setup
@@ -209,7 +209,7 @@ public:
       assertEmptyFixture(pqSrc);
       assertEmptyFixture(pqDest);
    }  // teardown
-   
+
    // copy constructor of a 4-element collection
    void test_constructCopy_standard()
    {  // setup
@@ -253,11 +253,11 @@ public:
       teardownStandardFixture(pqSrc);
       teardownStandardFixture(pqDest);
    }
-   
+
    /***************************************
     * MOVE CONSTRUCTOR
     ***************************************/
-   
+
    // move constructor of an empty container
    void test_constructMove_empty()
    {  // setup
@@ -278,7 +278,7 @@ public:
       assertEmptyFixture(pqSrc);
       assertEmptyFixture(pqDest);
    }  // teardown
-   
+
    // move constructor of a standard fixture
    void test_constructMove_standard()
    {  // setup
@@ -314,11 +314,11 @@ public:
       // teardown
       teardownStandardFixture(pqDest);
    }
-   
+
    /***************************************
     * RANGE CONSTRUCTOR
     ***************************************/
-   
+
    // priority_queue({})
    void test_constructRange_empty()
    {  // setup
@@ -340,7 +340,7 @@ public:
       // teardown
       teardownStandardFixture(pq);
    }
-   
+
    // priority_queue({50})
    void test_constructRange_one()
    {  // setup
@@ -402,11 +402,11 @@ public:
       // teardown
       teardownStandardFixture(pq);
    }
-   
+
    /***************************************
     * MOVE CONTAINER INITIALIZE CONSTRUCTOR
     ***************************************/
-   
+
    // priority_queue(<, {})
    void test_constructMoveInit_empty()
    {  // setup
@@ -429,7 +429,7 @@ public:
       // teardown
       teardownStandardFixture(pq);
    }
-   
+
    // priority_queue(<, {50})
    void test_constructMoveInit_one()
    {  // setup
@@ -439,8 +439,8 @@ public:
       // exercise
       custom::priority_queue <Spy> pq(std::less<Spy>(), std::move(v));
       // verify
-      assertUnit(Spy::numCopy() == 0);     
-      assertUnit(Spy::numAlloc() == 0);    
+      assertUnit(Spy::numCopy() == 0);
+      assertUnit(Spy::numAlloc() == 0);
       assertUnit(Spy::numCopyMove() == 0);
       assertUnit(Spy::numDelete() == 0);
       assertUnit(Spy::numDefault() == 0);
@@ -458,7 +458,7 @@ public:
       // teardown
       teardownStandardFixture(pq);
    }
-   
+
    // priority_queue(<, {9, 10, 8})
    void test_constructMoveInit_standard()
    {  // setup
@@ -468,8 +468,8 @@ public:
       // exercise
       custom::priority_queue <Spy> pq(std::less<Spy>(), std::move(v));
       // verify
-      assertUnit(Spy::numCopy() == 0);     
-      assertUnit(Spy::numAlloc() == 0);    
+      assertUnit(Spy::numCopy() == 0);
+      assertUnit(Spy::numAlloc() == 0);
       assertUnit(Spy::numLessthan() == 2); // [10<8][9>10]]
       assertUnit(Spy::numSwap() == 1);     // [9,10]
       assertUnit(Spy::numCopyMove() == 0);
@@ -542,7 +542,7 @@ public:
       // teardown
       teardownStandardFixture(pq);
    }
-   
+
    /***************************************
     * SIZE EMPTY
     ***************************************/
@@ -652,7 +652,7 @@ public:
    /***************************************
     * SWAP
     ***************************************/
-   
+
    // swap(empty, empty)
    void test_swap_emptyEmpty()
    {  // setup
@@ -677,7 +677,7 @@ public:
       teardownStandardFixture(pqLHS);
       teardownStandardFixture(pqRHS);
    }
-   
+
    // swap(standard, empty)
    void test_swap_standardEmpty()
    {  // setup
@@ -715,7 +715,7 @@ public:
       teardownStandardFixture(pqLHS);
       teardownStandardFixture(pqRHS);
    }
-      
+
    // swap(empty, standard
    void test_swap_emptyStandard()
    {  // setup
@@ -753,7 +753,7 @@ public:
       teardownStandardFixture(pqLHS);
       teardownStandardFixture(pqRHS);
    }
-   
+
    // swap(standard, stuff)
    void test_swap_standardStandard()
    {  // setup
@@ -808,8 +808,8 @@ public:
       teardownStandardFixture(pqLHS);
       teardownStandardFixture(pqRHS);
    }
-   
-   
+
+
    /***************************************
     * PERCOLATE
     ***************************************/
@@ -854,7 +854,7 @@ public:
       // Teardown
       teardownStandardFixture(pq);
    }
-   
+
    // test percolate down on a one-level change
    void test_percolateDown_oneLevel()
    {  // setup
@@ -977,7 +977,7 @@ public:
       // Teardown
       pq.container.clear();
    }
-   
+
    // test percolate down on a one-level change
    void test_percolateDown_oneLevelReversed()
    {  // setup
@@ -1013,7 +1013,7 @@ public:
       // Teardown
       pq.container.clear();
    }
-   
+
    // test percolate down on a one-level change
    void test_percolateDown_twoLevelsReversed()
    {  // setup
@@ -1066,7 +1066,7 @@ public:
       // Exercise
       pq.heapify();
       // Verify
-      assertUnit(Spy::numLessthan() == 0);    
+      assertUnit(Spy::numLessthan() == 0);
       assertUnit(Spy::numSwap() == 0);
       assertUnit(Spy::numEquals() == 0);
       assertUnit(Spy::numCopyMove() == 0);
@@ -1235,7 +1235,7 @@ public:
       assertStandardFixture(pq);
       // teardown
       teardownStandardFixture(pq);
-   }  
+   }
 
   /***************************************
    * POP
@@ -1372,7 +1372,7 @@ public:
       // teardown
       teardownStandardFixture(pq);
    }
-   
+
    // pop from the standard fixture
    void test_pop_standard()
    {  // setup
@@ -1421,7 +1421,7 @@ public:
       teardownStandardFixture(pq);
    }
 
-   
+
 
    /***************************************
     * PUSH
@@ -1557,8 +1557,8 @@ public:
       }
       // teardown
       teardownStandardFixture(pq);
-   }   
-   
+   }
+
    // push an element to a priorty queue that goes up two levels
    void test_push_levelTwo()
    {  // setup
@@ -1673,8 +1673,8 @@ public:
       // verify
       assertUnit(Spy::numCopyMove() == 1); // move [10]
       assertUnit(Spy::numAssign() == 0);
-      assertUnit(Spy::numCopy() == 0);    
-      assertUnit(Spy::numAlloc() == 0); 
+      assertUnit(Spy::numCopy() == 0);
+      assertUnit(Spy::numAlloc() == 0);
       assertUnit(Spy::numDelete() == 0);
       assertUnit(Spy::numDefault() == 0);
       assertUnit(Spy::numNondefault() == 0);
@@ -1711,7 +1711,7 @@ public:
       assertUnit(Spy::numLessthan() == 1); // compare [4<1]
       assertUnit(Spy::numCopyMove() == 1);  // move [1]
       assertUnit(Spy::numCopy() == 0);
-      assertUnit(Spy::numAlloc() == 0);   
+      assertUnit(Spy::numAlloc() == 0);
       assertUnit(Spy::numAssign() == 0);
       assertUnit(Spy::numDelete() == 0);
       assertUnit(Spy::numDefault() == 0);
@@ -1903,7 +1903,7 @@ public:
     *                 10
     *           8            9
     *        4     3      7     5
-    * 
+    *
     *   +---+---+---+---+---+---+---+---+---+
     *   | 10| 8 | 9 | 4 | 3 | 7 | 5 |   |   |
     *   +---+---+---+---+---+---+---+---+---+
@@ -1919,7 +1919,7 @@ public:
       std::priority_queue <Spy> pqTemp(il.begin(), il.end());
       pq = std::move(pqTemp);
    }
-   
+
    /***************************************************
     * VERIFY EMPTY FIXTURE
     ***************************************************/
@@ -1931,7 +1931,7 @@ public:
    {
       assertIndirect(pq.empty());
    }
-   
+
    /***************************************************
     * VERIFY STANDARD FIXTURE
     *                 10
@@ -1945,7 +1945,7 @@ public:
    void assertStandardFixtureParameters(const custom::priority_queue <Spy>& pq, int line, const char* function)
    {
       assertIndirect(pq.container.size() == 7);
-      
+
       if (pq.container.size() >= 7)
       {
          assertIndirect(pq.container[1-1] == Spy(10));
@@ -1962,9 +1962,9 @@ public:
       assertIndirect(pq.size() == 7);
 
    }
-   
+
    /***************************************************
-    * VERIFY TIGHT FIXTURE 
+    * VERIFY TIGHT FIXTURE
     *                 10
     *           8            9
     *        4     3      7     5
@@ -1992,7 +1992,7 @@ public:
    {
       assertIndirect(pq.size() == 7);
    }
-   
+
    /***************************************************
     * TEARDOWN STANDARD FIXTURE
     *   +---+---+---+---+---+---+---+---+---+---+
