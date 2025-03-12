@@ -155,7 +155,6 @@ void priority_queue <T, Container, Compare> :: push(T && t)
 template <class T, class Container, class Compare>
 bool priority_queue <T, Container, Compare> :: percolateDown(size_t indexHeap)
 {
-
    // Find the left child and the right child of index indexLeft <- index x 2
    size_t indexLeft = indexHeap * 2;
    size_t indexRight = indexLeft + 1;
@@ -167,19 +166,18 @@ bool priority_queue <T, Container, Compare> :: percolateDown(size_t indexHeap)
    {
 
       // Find which child is bigger, the left child or the right child?
-      if (indexRight <= container.size() && container[indexLeft - 1] < container[indexRight - 1])
+      if (indexRight <= container.size() && compare(container[indexLeft - 1], container[indexRight - 1]))
          indexBigger = indexRight;
       else
          indexBigger = indexLeft;
 
       // If the bigger child is greater than the parent, then swap it
-      if (container[indexHeap - 1] < container[indexBigger - 1])
+      if (compare(container[indexHeap - 1], container[indexBigger - 1]))
       {
          swap(container[indexHeap - 1], container[indexBigger - 1]);
          percolateDown(indexBigger);
          return true;
       }
-
    }
    return false;
 }
@@ -192,7 +190,7 @@ template <class T, class Container, class Compare>
 void priority_queue <T, Container, Compare> ::heapify()
 {
    for (int i = container.size() / 2; i >= 0; i--)
-      percolateDown(i);
+      percolateDown(i + 1); // i is actual index, add 1 so it is a heap index
 }
 
 /************************************************
