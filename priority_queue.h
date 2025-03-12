@@ -21,6 +21,7 @@
 
 #include <cassert>
 #include "vector.h" // for default underlying container
+using std::swap;
 
 class TestPQueue;    // forward declaration for unit test class
 
@@ -52,14 +53,10 @@ public:
       container.reserve(last - first);
       for (auto it = first; it != last; ++it)
          push(*it);
-      //heapify();
-   }
-   explicit priority_queue(const Compare& c, Container&& rhs) : compare(c), container(std::move(rhs)) {
       heapify();
    }
-   explicit priority_queue(const Compare& c, Container& rhs) : compare(c), container(rhs) {
-      heapify();
-   }
+   explicit priority_queue(const Compare& c, Container&& rhs) : compare(c), container(std::move(rhs)) { heapify(); }
+   explicit priority_queue(const Compare& c, Container& rhs) : compare(c), container(rhs) { heapify(); }
    ~priority_queue() { }
 
    //
@@ -116,7 +113,6 @@ const T & priority_queue <T, Container, Compare> :: top() const
 template <class T, class Container, class Compare>
 void priority_queue <T, Container, Compare> :: pop()
 {
-   using std::swap;
    if (!empty())
       swap(container[0], container[size() - 1]);
    container.pop_back();
@@ -156,17 +152,12 @@ bool priority_queue <T, Container, Compare> :: percolateDown(size_t indexHeap)
     size_t indexLeft = 2 * indexHeap;
     size_t indexRight = 2 * indexHeap + 1;
     size_t indexBiggest = indexHeap;
-    using std::swap;
 
     if (indexLeft <= container.size() && compare(container[indexBiggest - 1], container[indexLeft - 1]))
-    {
         indexBiggest = indexLeft;
-    }
 
     if (indexRight <= container.size() && compare(container[indexBiggest - 1], container[indexRight - 1]))
-    {
         indexBiggest = indexRight;
-    }
 
     if (indexBiggest != indexHeap)
     {
@@ -196,7 +187,6 @@ template <class T, class Container, class Compare>
 inline void swap(custom::priority_queue <T, Container, Compare> & lhs,
                  custom::priority_queue <T, Container, Compare> & rhs)
 {
-   using std::swap;
    swap(lhs.container, rhs.container);
    swap(lhs.compare, rhs.compare);
 }
