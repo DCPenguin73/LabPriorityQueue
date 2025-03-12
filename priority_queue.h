@@ -79,8 +79,7 @@ public:
    // Status
    //
    size_t size()  const { return container.size(); }
-
-   bool empty() const { return size() == size_t(0);}
+   bool empty()   const { return size() == size_t(0);}
 
 private:
 
@@ -149,23 +148,22 @@ void priority_queue <T, Container, Compare> :: push(T && t)
 template <class T, class Container, class Compare>
 bool priority_queue <T, Container, Compare> :: percolateDown(size_t indexHeap)
 {
-    size_t indexLeft = 2 * indexHeap;
-    size_t indexRight = 2 * indexHeap + 1;
-    size_t indexBiggest = indexHeap;
+   size_t indexLeft  = 2 * indexHeap;
+   size_t indexRight = indexLeft + 1;
+   size_t indexBigger = indexHeap;
 
-    if (indexLeft <= container.size() && compare(container[indexBiggest - 1], container[indexLeft - 1]))
-        indexBiggest = indexLeft;
+   if (indexRight <= size() && compare(container[indexLeft - 1], container[indexRight - 1]))
+      indexBigger = indexRight;
+   else
+      indexBigger = indexLeft;
 
-    if (indexRight <= container.size() && compare(container[indexBiggest - 1], container[indexRight - 1]))
-        indexBiggest = indexRight;
-
-    if (indexBiggest != indexHeap)
-    {
-        swap(container[indexHeap - 1], container[indexBiggest - 1]);
-        percolateDown(indexBiggest);
-        return true;
-    }
-    return false;
+   if (indexBigger <= size() && compare(container[indexHeap - 1], container[indexBigger - 1]))
+   {
+      swap(container[indexHeap - 1], container[indexBigger - 1]);
+      percolateDown(indexBigger);
+      return true;
+   }
+   return false;
 }
 
 /************************************************
