@@ -21,7 +21,6 @@
 
 #include <cassert>
 #include "vector.h" // for default underlying container
-using std::swap;
 
 class TestPQueue;    // forward declaration for unit test class
 
@@ -79,7 +78,7 @@ public:
    // Status
    //
    size_t size()  const { return container.size(); }
-   bool empty() const { return size() == size_t(0);}
+   bool empty()   const { return size() == size_t(0);}
 
 private:
 
@@ -110,6 +109,7 @@ const T & priority_queue <T, Container, Compare> :: top() const
 template <class T, class Container, class Compare>
 void priority_queue <T, Container, Compare> :: pop()
 {
+   using std::swap;
    if (!empty())
       swap(container[0], container[size() - 1]);
    container.pop_back();
@@ -146,23 +146,23 @@ void priority_queue <T, Container, Compare> :: push(T && t)
 template <class T, class Container, class Compare>
 bool priority_queue <T, Container, Compare> :: percolateDown(size_t indexHeap)
 {
-    size_t indexLeft = 2 * indexHeap;
-    size_t indexRight = 2 * indexHeap + 1;
-    size_t indexBiggest = indexHeap;
+   using std::swap;
+   size_t indexLeft  = 2 * indexHeap;
+   size_t indexRight = indexLeft + 1;
+   size_t indexBigger = indexHeap;
 
-    if (indexLeft <= container.size() && compare(container[indexBiggest - 1], container[indexLeft - 1]))
-        indexBiggest = indexLeft;
+   if (indexRight <= size() && compare(container[indexLeft - 1], container[indexRight - 1]))
+      indexBigger = indexRight;
+   else
+      indexBigger = indexLeft;
 
-    if (indexRight <= container.size() && compare(container[indexBiggest - 1], container[indexRight - 1]))
-        indexBiggest = indexRight;
-
-    if (indexBiggest != indexHeap)
-    {
-        swap(container[indexHeap - 1], container[indexBiggest - 1]);
-        percolateDown(indexBiggest);
-        return true;
-    }
-    return false;
+   if (indexBigger <= size() && compare(container[indexHeap - 1], container[indexBigger - 1]))
+   {
+      swap(container[indexHeap - 1], container[indexBigger - 1]);
+      percolateDown(indexBigger);
+      return true;
+   }
+   return false;
 }
 
 /************************************************
@@ -184,6 +184,7 @@ template <class T, class Container, class Compare>
 inline void swap(custom::priority_queue <T, Container, Compare> & lhs,
                  custom::priority_queue <T, Container, Compare> & rhs)
 {
+   //using std::swap;
    swap(lhs.container, rhs.container);
    swap(lhs.compare, rhs.compare);
 }
