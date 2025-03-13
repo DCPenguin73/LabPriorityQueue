@@ -21,7 +21,6 @@
 
 #include <cassert>
 #include "vector.h" // for default underlying container
-using std::swap;
 
 class TestPQueue;    // forward declaration for unit test class
 
@@ -88,7 +87,6 @@ private:
 
    Container container;       // underlying container (probably a vector)
    Compare   compare;         // comparision operator
-
 };
 
 /************************************************
@@ -102,7 +100,6 @@ const T & priority_queue <T, Container, Compare> :: top() const
       return container.front();
    else
       throw std::out_of_range("std:out_of_range");
-
 }
 
 /**********************************************
@@ -112,6 +109,7 @@ const T & priority_queue <T, Container, Compare> :: top() const
 template <class T, class Container, class Compare>
 void priority_queue <T, Container, Compare> :: pop()
 {
+   using std::swap;
    if (!empty())
       swap(container[0], container[size() - 1]);
    container.pop_back();
@@ -148,6 +146,7 @@ void priority_queue <T, Container, Compare> :: push(T && t)
 template <class T, class Container, class Compare>
 bool priority_queue <T, Container, Compare> :: percolateDown(size_t indexHeap)
 {
+   using std::swap;
    size_t indexLeft  = 2 * indexHeap;
    size_t indexRight = indexLeft + 1;
    size_t indexBigger = indexHeap;
@@ -185,6 +184,7 @@ template <class T, class Container, class Compare>
 inline void swap(custom::priority_queue <T, Container, Compare> & lhs,
                  custom::priority_queue <T, Container, Compare> & rhs)
 {
+   //using std::swap;
    swap(lhs.container, rhs.container);
    swap(lhs.compare, rhs.compare);
 }
